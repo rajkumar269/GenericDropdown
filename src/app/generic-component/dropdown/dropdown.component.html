@@ -1,0 +1,15 @@
+<div class="dropdown" dirClickOutside (clickOutside)="closeDropdown()">
+    <div skinColor class="label selected" *ngIf="!!selectedItem">
+        <i class="fa fa-close" skinColor (click)="clearSelection()"></i>
+        <div class="label-name" skinColor>{{selectedItem.name}}</div>
+    </div>
+    <div skinColor class="label" *ngIf="!selectedItem" (click)="toggleDropdown()">
+        <i class="fa fa-chevron-down" skinColor></i>
+        <div class="label-name" skinColor>{{name}}</div>
+    </div>
+    <ul *ngIf="isOpen" class="options">
+        <li *ngFor="let item of items" (click)="selectItem(item)" [class.disabled]="isDisabled(item)">
+            <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext ]="{ item: item }"></ng-template>
+        </li>
+    </ul>
+</div>
